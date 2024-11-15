@@ -33,7 +33,7 @@ spec:
     service:
       main:
         type: ExternalIP
-        externalIP: ${TRUENAS_IP}
+        externalIP: ${NEXTCLOUD_IP}
         ports:
           main:
             protocol: http
