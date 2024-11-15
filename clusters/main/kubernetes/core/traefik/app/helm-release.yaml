@@ -38,3 +38,29 @@ spec:
     service:
       tcp:
         loadBalancerIP: ${TRAEFIK_IP}
+        externalTrafficPolicy: Local        
+    ingress:
+      main:
+        enabled: true
+        integrations:
+          traefik:
+            enabled: true
+            # middlewares:
+            #   - name: local
+            #     namespace: traefik
+              # - name: bouncer
+              #   namespace: traefik
+          # certManager:
+          #   enabled: true
+          #   certificateIssuer: cloudflare
+
+        tls:
+          - hosts:
+              - traefik.${DOMAIN_0}
+            clusterIssuer: cluster-cert
+
+        hosts:
+          - host: traefik.${DOMAIN_0}
+            paths:
+              - path: /
+                pathType: Prefix       
