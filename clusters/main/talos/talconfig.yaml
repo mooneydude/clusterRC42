@@ -40,6 +40,21 @@ nodes:
               gateway: ${GATEWAY}
           vip:
             ip: ${VIP}
+
+    - hostname: k8s-worker-1
+      ipAddress: 192.168.68.117
+      nameservers:
+        - 1.1.1.1
+        - 8.8.8.8
+      installDiskSelector:
+        size: <= 600GB
+      schematic:
+          customization:
+              systemExtensions:
+                  officialExtensions:
+                      - siderolabs/qemu-guest-agent
+                      - siderolabs/util-linux-tools
+                      - siderolabs/iscsi-tools
 controlPlane:
     patches:
         - '@./patches/controlplane.yaml'
